@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
+import PropTypes from 'prop-types';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -87,5 +88,10 @@ const RegisterForm = () => {
       </Button>
     </FormControl>
   );
+};
+RegisterForm.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
 };
 export default RegisterForm;

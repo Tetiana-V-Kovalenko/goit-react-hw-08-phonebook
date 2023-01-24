@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
 import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -60,5 +62,10 @@ const LoginForm = () => {
       </Button>
     </FormControl>
   );
+};
+
+LoginForm.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string,
 };
 export default LoginForm;

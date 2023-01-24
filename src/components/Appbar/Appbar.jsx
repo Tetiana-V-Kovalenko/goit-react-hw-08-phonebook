@@ -4,6 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import Navigation from './Navigation';
 import UserMenu from './UserMenu';
 import { Flex, Link } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 
 const Appbar = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -29,5 +30,8 @@ const Appbar = () => {
       </Suspense>
     </>
   );
+};
+Appbar.propTypes = {
+  isLoggedIn: PropTypes.bool,
 };
 export default Appbar;

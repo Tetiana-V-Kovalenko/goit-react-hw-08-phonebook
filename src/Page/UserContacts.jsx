@@ -3,7 +3,7 @@ import Filter from 'components/Contacts/Filter';
 import FormPhonebook from 'components/FormPhonebook/FormPhonebook';
 import { useSelector } from 'react-redux';
 import { Box, Heading } from '@chakra-ui/react';
-
+import PropTypes from 'prop-types';
 const UserContacts = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
@@ -24,5 +24,8 @@ const UserContacts = () => {
       )}
     </>
   );
+};
+UserContacts.propTypes = {
+  isLoggedIn: PropTypes.bool,
 };
 export default UserContacts;

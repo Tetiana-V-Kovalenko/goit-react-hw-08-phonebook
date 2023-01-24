@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/341.2e9e1a4b.chunk.js","mappings":"2JAGA,UAHa,WACX,OAAO,gEACR,C","sources":["Page/Main.jsx"],"sourcesContent":["const Main = () => {\n  return <h1>Please, could you register or login </h1>;\n};\nexport default Main;\n"],"names":[],"sourceRoot":""}

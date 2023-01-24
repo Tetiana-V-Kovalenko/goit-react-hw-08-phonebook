@@ -1,5 +1,5 @@
-import css from './Contacts.module.css';
 import PropTypes from 'prop-types';
+import { Text, Input } from '@chakra-ui/react';
 import { addFilter } from 'redux/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,16 +11,17 @@ const Filter = () => {
   };
 
   return (
-    <label className={css.labelFilter}>
-      Find contacts by name
-      <input
-        className={css.inputFilter}
-        type="text"
-        name="filter"
-        value={filter}
-        onChange={onChangeFilterContact}
-      />
-    </label>
+    <>
+      <Text as="label" m="10px 0" display="block">
+        Find contacts by name{' '}
+        <Input
+          type="text"
+          name="filter"
+          value={filter}
+          onChange={onChangeFilterContact}
+        />
+      </Text>
+    </>
   );
 };
 Filter.propTypes = {

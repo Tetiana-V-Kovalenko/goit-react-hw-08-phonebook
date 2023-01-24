@@ -1,10 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import css from './FormPhonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsOperations';
 import { nanoid } from 'nanoid';
+import {
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Button,
+} from '@chakra-ui/react';
 
 const FormPhonebook = () => {
   const [nameContact, setNameContact] = useState('');
@@ -44,35 +50,42 @@ const FormPhonebook = () => {
   };
 
   return (
-    <form onSubmit={onSubmitAddContact} className={css.form}>
-      <label className={css.inputPhonebook}>
-        Name:
-        <input
-          onChange={saveData}
-          value={nameContact}
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </label>
-      <label className={css.inputPhonebook}>
-        Number:
-        <input
-          onChange={saveData}
-          value={numberContact}
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </label>
-      <button className={css.btnAddContact} type="submit">
+    <FormControl
+      onSubmit={onSubmitAddContact}
+      autoComplete="off"
+      as="form"
+      w="40%"
+      m="60px auto 0px"
+      align="center"
+    >
+      <Heading>Phonebook</Heading>
+      <FormLabel>Name</FormLabel>
+      <Input
+        isInvalid={nameContact === ''}
+        onChange={saveData}
+        value={nameContact}
+        type="text"
+        name="name"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        required
+        isRequired
+      />
+      <FormLabel>Number </FormLabel>
+      <Input
+        isInvalid={numberContact === ''}
+        onChange={saveData}
+        value={numberContact}
+        type="tel"
+        name="number"
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        isRequired
+      />
+      <Button mt={4} colorScheme="teal" type="submit">
         Add contact
-      </button>
-    </form>
+      </Button>
+    </FormControl>
   );
 };
 

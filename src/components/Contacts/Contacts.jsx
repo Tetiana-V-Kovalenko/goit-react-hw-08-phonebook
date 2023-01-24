@@ -1,6 +1,13 @@
-import css from './Contacts.module.css';
 import PropTypes from 'prop-types';
-
+import { BsFillTelephoneFill } from 'react-icons/bs';
+import {
+  Text,
+  Button,
+  ListItem,
+  ListIcon,
+  Heading,
+  UnorderedList,
+} from '@chakra-ui/react';
 import { fetchContacts, deleteContact } from 'redux/contactsOperations';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +32,7 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <ul className={css.contactList}>
+    <UnorderedList>
       {isLoading && (
         <ColorRing
           visible={true}
@@ -36,46 +43,61 @@ const Contacts = () => {
           colors={['#b8c480', '#B2A3B5', '#F4442E', '#51E5FF', '#429EA6']}
         />
       )}
-      {error && <h2> An error occured {error}</h2>}
-
+      {error && <Heading as="h2"> An error occured {error}</Heading>}
       {items.length === 0 ? (
-        <p style={{ marginLeft: '30px' }}>There are no contact</p>
+        <Text>There are no contact</Text>
       ) : filter !== '' ? (
         filterArr.map(({ name, id, number }) => {
           return (
-            <li key={id} className={css.contactItem}>
-              <p>
+            <ListItem
+              key={id}
+              display="flex"
+              gap="15px"
+              alignItems="center"
+              marginBottom="10px"
+            >
+              <ListIcon as={BsFillTelephoneFill} color="teal" />
+              <Text as="span" fontSize="large">
                 {name} : {number}
-              </p>
-              <button
-                className={css.btnDelete}
+              </Text>
+              <Button
                 type="button"
+                colorScheme="teal"
+                h="30px"
                 onClick={() => onClickDeleteContact(id)}
               >
                 X
-              </button>
-            </li>
+              </Button>
+            </ListItem>
           );
         })
       ) : (
         items.map(({ name, id, number }) => {
           return (
-            <li key={id} className={css.contactItem}>
-              <p>
+            <ListItem
+              key={id}
+              display="flex"
+              gap="15px"
+              alignItems="center"
+              marginBottom="10px"
+            >
+              <ListIcon as={BsFillTelephoneFill} color="teal" />
+              <Text as="span" fontSize="large">
                 {name} : {number}
-              </p>
-              <button
-                className={css.btnDelete}
+              </Text>
+              <Button
+                colorScheme="teal"
+                h="30px"
                 type="button"
                 onClick={() => onClickDeleteContact(id)}
               >
                 X
-              </button>
-            </li>
+              </Button>
+            </ListItem>
           );
         })
       )}
-    </ul>
+    </UnorderedList>
   );
 };
 Contacts.propTypes = {

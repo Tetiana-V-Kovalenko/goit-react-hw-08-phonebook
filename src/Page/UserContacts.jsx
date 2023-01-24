@@ -2,6 +2,7 @@ import Contacts from 'components/Contacts/Contacts';
 import Filter from 'components/Contacts/Filter';
 import FormPhonebook from 'components/FormPhonebook/FormPhonebook';
 import { useSelector } from 'react-redux';
+import { Box, Heading } from '@chakra-ui/react';
 
 const UserContacts = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -9,12 +10,14 @@ const UserContacts = () => {
     <>
       {isLoggedIn ? (
         <main>
-          <h1 style={{ marginLeft: '50px' }}>Phonebook</h1>
           <FormPhonebook />
-          <h2 style={{ marginLeft: '50px' }}>Contacts</h2>
-
-          <Filter />
-          <Contacts />
+          <Box w="40%" m="60px auto 0px">
+            <Heading as="h2" textAlign="center" mb="10px">
+              Contacts
+            </Heading>
+            <Filter />
+            <Contacts />
+          </Box>
         </main>
       ) : (
         <p>Please Authozate</p>

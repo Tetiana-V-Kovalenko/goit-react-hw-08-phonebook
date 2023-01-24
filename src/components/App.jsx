@@ -5,6 +5,7 @@ import { useEffect, lazy } from 'react';
 import { getCurrentUser } from 'redux/auth/authOperations';
 import PrivateRoute from './Appbar/PrivateRoute';
 import RestrictedRoute from './Appbar/RestrictedRoute';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const Main = lazy(() => import('../Page/Main'));
 const RegisterForm = lazy(() => import('../Page/RegisterForm'));
@@ -18,32 +19,37 @@ export const App = () => {
     dispatch(getCurrentUser());
   }, [dispatch]);
   return (
-    <Routes>
-      <Route path="/" element={<Appbar />}>
-        {' '}
-        <Route index element={<Main />} />
-        <Route
-          path="register"
-          element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<RegisterForm />}
-            />
-          }
-        />
-        <Route
-          path="login"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginForm />} />
-          }
-        />
-        <Route
-          path="contacts"
-          element={
-            <PrivateRoute redirectTo="/login" component={<UserContacts />} />
-          }
-        />
-      </Route>
-    </Routes>
+    <ChakraProvider>
+      <Routes>
+        <Route path="/" element={<Appbar />}>
+          {' '}
+          <Route index element={<Main />} />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterForm />}
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginForm />}
+              />
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<UserContacts />} />
+            }
+          />
+        </Route>
+      </Routes>
+    </ChakraProvider>
   );
 };

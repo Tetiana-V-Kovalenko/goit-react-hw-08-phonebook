@@ -1,4 +1,9 @@
+import { Heading } from '@chakra-ui/react';
 const Main = () => {
-  return <h1>Please, could you register or login </h1>;
+  return (
+    <Heading as="h1" textAlign="center" mt="60px">
+      Contact manager welcome page
+    </Heading>
+  );
 };
 export default Main;

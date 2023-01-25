@@ -5,7 +5,7 @@ export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
   try {
     const { data } = await axios({
       method: 'GET',
-      url: 'https://connections-api.herokuapp.com/contacts',
+      url: 'contacts',
     });
 
     return data;
@@ -18,7 +18,7 @@ export const addContact = createAsyncThunk(
     try {
       const { data } = await axios({
         method: 'POST',
-        url: 'https://connections-api.herokuapp.com/contacts',
+        url: 'contacts',
         data: contact,
       });
 
@@ -32,7 +32,7 @@ export const deleteContact = createAsyncThunk(
     try {
       const { data } = await axios({
         method: 'DELETE',
-        url: `https://connections-api.herokuapp.com/contacts/${contactId}`,
+        url: `contacts/${contactId}`,
       });
 
       return data;
